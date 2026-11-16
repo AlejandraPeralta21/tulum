@@ -1,0 +1,2724 @@
+/* ==========================================================================
+   KARAOKE TULUM — SISTEMA VISUAL "BOUTIQUE LOUNGE"
+   --------------------------------------------------------------------------
+   Capa final de diseño. Se carga después de styles.css y responsive.css para
+   unificar la identidad visual: negro cálido, dorado champagne, tipografía
+   editorial y una jerarquía limpia. Sin neón, sin brillos excesivos.
+
+   Orden:
+     01. Tokens de diseño
+     02. Base y accesibilidad
+     03. Estructura (header, contenido, drawer, bottom nav)
+     04. Tipografía y encabezados
+     05. Botones, chips y controles
+     06. Formularios
+     07. Tarjetas (canciones, artistas, categorías)
+     08. Vista Inicio
+     09. Catálogo
+     10. Reservas
+     11. Centro de control (admin)
+     12. Reproductor de karaoke
+     13. Modales, toasts y splash
+     14. Tema claro
+     15. Responsive móvil
+     16. Movimiento reducido
+   ========================================================================== */
+
+/* ==========================================================================
+   01. TOKENS DE DISEÑO
+   ========================================================================== */
+:root {
+    /* Superficies: negro cálido, no azulado */
+    --color-bg-space: #0A0A0B;
+    --color-bg-deep: #0E0E10;
+    --color-bg-surface: #131316;
+    --color-bg-surface-elevated: #1A1A1E;
+
+    /* Acento: dorado champagne */
+    --color-gold-champagne: #C6A15B;
+    --color-gold-soft: #E5D2A8;
+    --color-gold-dark: #8C7038;
+
+    /* Acentos secundarios, deliberadamente apagados */
+    --color-neon-violet: #A79BC0;
+    --color-electric-blue: #93A0AC;
+    --color-neon-pink: #B98F8A;
+
+    /* Texto */
+    --color-white-luminous: #F2ECE2;
+    --color-gray-sec: #9C958A;
+
+    /* Líneas y bordes */
+    --color-border-subtle: rgba(198, 161, 91, 0.16);
+    --color-border-glow: rgba(198, 161, 91, 0.28);
+    --color-border-gold-glow: rgba(198, 161, 91, 0.42);
+
+    /* Radios */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 18px;
+
+    /* Sombras discretas */
+    --shadow-gold-soft: 0 8px 22px rgba(0, 0, 0, 0.3);
+    --shadow-gold-glow: 0 12px 30px rgba(0, 0, 0, 0.36);
+    --shadow-neon-violet: 0 10px 26px rgba(0, 0, 0, 0.3);
+    --shadow-ai-blue: 0 10px 26px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 14px 36px rgba(0, 0, 0, 0.4);
+
+    /* Tipografía */
+    --font-display: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-accent: 'Cormorant Garamond', Georgia, serif;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-primary: var(--font-display);
+    --font-secondary: var(--font-body);
+
+    /* Tokens propios de esta capa */
+    --ink: #F2ECE2;
+    --ink-dim: #C9C1B4;
+    --muted: #9C958A;
+    --muted-dim: #8D867B;
+    --line: rgba(255, 255, 255, 0.075);
+    --line-strong: rgba(255, 255, 255, 0.13);
+    --line-gold: rgba(198, 161, 91, 0.22);
+    --gold-ink: #171208;
+    --success: #8FA98A;
+    --danger: #C46A6E;
+}
+
+/* ==========================================================================
+   02. BASE Y ACCESIBILIDAD
+   ========================================================================== */
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    background-color: var(--color-bg-space);
+    color: var(--ink);
+}
+
+body {
+    user-select: text;
+    font-family: var(--font-body);
+}
+
+::selection {
+    background: rgba(198, 161, 91, 0.85);
+    color: var(--gold-ink);
+}
+
+button,
+a,
+.brand-crest-btn {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font-family: var(--font-body);
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 1px solid var(--color-gold-champagne);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+input,
+textarea,
+select {
+    user-select: text;
+}
+
+/* Scrollbars finos y discretos */
+.app-content-area,
+.view-inicio-container,
+.modal-body {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(198, 161, 91, 0.3) transparent;
+}
+.app-content-area::-webkit-scrollbar,
+.view-inicio-container::-webkit-scrollbar,
+.modal-body::-webkit-scrollbar {
+    width: 7px;
+}
+.app-content-area::-webkit-scrollbar-thumb,
+.view-inicio-container::-webkit-scrollbar-thumb,
+.modal-body::-webkit-scrollbar-thumb {
+    background: rgba(198, 161, 91, 0.28);
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   03. ESTRUCTURA: SHELL, HEADER, CONTENIDO, DRAWER Y NAV INFERIOR
+   ========================================================================== */
+.app-container {
+    height: 100dvh;
+    min-height: 0;
+    grid-template-rows: auto minmax(0, 1fr);
+    background:
+        radial-gradient(ellipse at 82% -10%, rgba(198, 161, 91, 0.07), transparent 42%),
+        radial-gradient(ellipse at 8% 110%, rgba(198, 161, 91, 0.035), transparent 46%),
+        var(--color-bg-space);
+}
+
+/* Header */
+.app-header {
+    height: 68px;
+    padding: 0 clamp(18px, 3vw, 40px);
+    background: rgba(10, 10, 11, 0.9);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+    box-shadow: none;
+}
+
+.header-left {
+    gap: 16px;
+    min-width: 0;
+}
+
+.btn-header-action {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: #D6CBB8;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-header-action:hover {
+    background: rgba(198, 161, 91, 0.08);
+    border-color: rgba(198, 161, 91, 0.35);
+    color: var(--color-gold-soft);
+    transform: none;
+    box-shadow: none;
+}
+
+.brand-crest-btn {
+    gap: 12px;
+    border-radius: 8px;
+}
+
+.brand-crest-btn:hover .brand-title {
+    color: var(--color-gold-soft);
+}
+
+.tulum-icon-crest {
+    opacity: 0.95;
+}
+
+.brand-title {
+    font-family: var(--font-serif);
+    font-size: 1.16rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: currentColor;
+    transition: color 0.2s ease;
+}
+
+.brand-slogan {
+    font-size: 0.54rem;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    color: #868073;
+}
+
+/* Indicador central de ruta: texto editorial, sin píldora */
+.header-center-route {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    color: #8A8378;
+    text-transform: uppercase;
+}
+
+.header-center-route::before,
+.header-center-route::after {
+    content: "";
+    width: 26px;
+    height: 1px;
+    background: var(--line-strong);
+}
+
+.header-right {
+    gap: 8px;
+}
+
+/* Botón RESERVAR (no tenía estilos propios) */
+.btn-header-vip-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: 1px solid var(--color-gold-champagne);
+    background: var(--color-gold-champagne);
+    color: var(--gold-ink);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-header-vip-pill svg {
+    width: 14px;
+    height: 14px;
+}
+
+.btn-header-vip-pill:hover {
+    background: var(--color-gold-soft);
+    border-color: var(--color-gold-soft);
+}
+
+.btn-header-admin-pill {
+    height: 38px;
+    padding: 0 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: #A8A196;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.btn-header-admin-pill:hover {
+    color: var(--color-gold-soft);
+    border-color: rgba(198, 161, 91, 0.4);
+    background: rgba(198, 161, 91, 0.06);
+}
+
+/* Área de contenido */
+.app-content-area {
+    min-height: 0;
+    height: 100%;
+    padding: clamp(14px, 1.8vh, 22px) clamp(18px, 2.6vw, 40px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+}
+
+/* Drawer lateral */
+.drawer-overlay {
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(6px);
+}
+
+.sidebar-drawer {
+    width: 320px;
+    background: #0D0D0F;
+    border-right: 1px solid var(--line);
+    box-shadow: 24px 0 60px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar-header {
+    padding: 22px 18px 16px;
+    border-bottom: 1px solid var(--line);
+}
+
+.sidebar-brand-box {
+    gap: 12px;
+}
+
+.sidebar-nav-item {
+    gap: 13px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-weight: 500;
+    transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sidebar-nav-item:hover {
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.sidebar-nav-item.active {
+    color: var(--color-gold-soft);
+    background: rgba(198, 161, 91, 0.09);
+    font-weight: 600;
+    box-shadow: inset 2px 0 var(--color-gold-champagne);
+}
+
+.sidebar-nav-item.active svg {
+    stroke: var(--color-gold-champagne);
+}
+
+.sidebar-footer {
+    border-top: 1px solid var(--line);
+}
+
+.theme-toggle-row {
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+/* Bottom navigation (móvil) */
+.app-bottom-nav {
+    background: rgba(10, 10, 11, 0.97);
+    border-top: 1px solid var(--line);
+    backdrop-filter: blur(18px);
+}
+
+.bottom-nav-item {
+    position: relative;
+    gap: 4px;
+    padding: 6px 10px;
+    color: #7E786E;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.bottom-nav-item.active {
+    color: var(--color-gold-champagne);
+}
+
+.bottom-nav-item.active::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-gold-champagne);
+}
+
+.bottom-nav-item.active svg {
+    stroke: var(--color-gold-champagne);
+    filter: none;
+}
+
+/* Indicador de hidratación */
+.hydration-status-badge {
+    top: 76px;
+    right: 22px;
+    background: rgba(17, 17, 19, 0.96);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.status-text {
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+}
+
+.status-progress-track {
+    width: 34px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.status-progress-fill {
+    background: var(--color-gold-champagne);
+}
+
+.status-pulse-led {
+    width: 6px;
+    height: 6px;
+    background: var(--color-gold-champagne);
+    box-shadow: none;
+    animation: none;
+}
+
+/* ==========================================================================
+   04. TIPOGRAFÍA Y ENCABEZADOS
+   ========================================================================== */
+.hero-title,
+.splash-brand-title,
+.view-main-title,
+.section-heading-gold,
+.reservas-page-title,
+.success-title,
+.confirm-heading,
+.player-song-title,
+.song-details-title {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 3.1vw, 2.85rem);
+    line-height: 1.02;
+    color: var(--ink);
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: currentColor;
+    margin-bottom: 8px;
+}
+
+.hero-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1rem, 1.2vw, 1.15rem);
+    font-weight: 500;
+    color: #CDBFA8;
+    line-height: 1.4;
+    max-width: 52ch;
+    margin-bottom: 0;
+}
+
+.hero-desc-lounge {
+    max-width: 58ch;
+    margin-top: 10px;
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--muted);
+}
+
+.view-main-title {
+    font-size: clamp(1.7rem, 2.4vw, 2.15rem);
+    color: var(--ink);
+}
+
+.view-main-sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: #B0A897;
+    line-height: 1.5;
+}
+
+.section-kicker {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    color: var(--color-gold-champagne);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.section-heading-gold,
+.section-title-row h2 {
+    font-size: 1.22rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+}
+
+.btn-link-gold {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--color-gold-champagne);
+    transition: color 0.2s ease;
+}
+
+.btn-link-gold:hover {
+    color: var(--color-gold-soft);
+}
+
+/* ==========================================================================
+   05. BOTONES, CHIPS Y CONTROLES
+   ========================================================================== */
+.btn-gold,
+.btn-sm-gold,
+.btn-reserva-continue,
+.btn-reserva-confirm,
+.splash-btn-entrar {
+    background-color: var(--color-gold-champagne);
+    background-image: none;
+    color: var(--gold-ink);
+    border: 1px solid var(--color-gold-champagne);
+    border-radius: 8px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    box-shadow: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-gold:hover,
+.btn-sm-gold:hover,
+.btn-reserva-continue:hover,
+.btn-reserva-confirm:hover,
+.splash-btn-entrar:hover {
+    background-color: var(--color-gold-soft);
+    border-color: var(--color-gold-soft);
+    filter: none;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+}
+
+.btn-reserva-confirm::after {
+    display: none;
+}
+
+.btn-gold-outline,
+.btn-reserva-back,
+.btn-reserva-edit,
+.btn-reserva-cancel,
+.btn-dark-pill,
+.btn-sm-gold-outline,
+.btn-sm-danger-outline {
+    background: transparent;
+    border: 1px solid var(--line-strong);
+    border-radius: 8px;
+    color: var(--ink-dim);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: none;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.btn-gold-outline {
+    border-color: rgba(198, 161, 91, 0.42);
+    color: var(--color-gold-soft);
+}
+
+.btn-gold-outline:hover,
+.btn-dark-pill:hover,
+.btn-reserva-back:hover,
+.btn-reserva-edit:hover {
+    background: rgba(198, 161, 91, 0.08);
+    border-color: rgba(198, 161, 91, 0.45);
+    color: var(--color-gold-soft);
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-reserva-cancel:hover,
+.btn-sm-danger-outline:hover {
+    background: rgba(196, 106, 110, 0.1);
+    border-color: rgba(196, 106, 110, 0.5);
+    color: var(--danger);
+}
+
+.btn-dark-pill {
+    background: transparent;
+    color: var(--ink-dim);
+}
+
+.btn-vip-lounge-trigger {
+    background: transparent;
+    border: 1px solid rgba(198, 161, 91, 0.4);
+    color: var(--color-gold-soft);
+    border-radius: 8px;
+    box-shadow: none;
+}
+
+.btn-vip-lounge-trigger:hover {
+    background: rgba(198, 161, 91, 0.08);
+    border-color: var(--color-gold-champagne);
+    color: var(--color-gold-soft);
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.btn-icon:hover {
+    color: var(--color-gold-soft);
+    border-color: rgba(198, 161, 91, 0.4);
+    background: rgba(198, 161, 91, 0.06);
+}
+
+.btn-clear-search {
+    color: var(--muted-dim);
+}
+
+/* Chips de género */
+.chip-sm,
+.ai-chip {
+    padding: 5px 11px;
+    border-radius: 5px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.chip-sm:hover,
+.ai-chip:hover {
+    color: var(--color-gold-soft);
+    border-color: rgba(198, 161, 91, 0.4);
+    background: rgba(198, 161, 91, 0.07);
+}
+
+/* Pills de filtro del catálogo */
+.filter-pill {
+    padding: 6px 13px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.74rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.filter-pill:hover {
+    border-color: rgba(198, 161, 91, 0.4);
+    color: var(--ink);
+    background: rgba(198, 161, 91, 0.05);
+}
+
+.filter-pill.active {
+    background: var(--color-gold-champagne);
+    border-color: var(--color-gold-champagne);
+    color: var(--gold-ink);
+    font-weight: 700;
+    box-shadow: none;
+}
+
+.filter-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.toggle-pill-duetos {
+    height: 36px;
+    padding: 0 14px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.74rem;
+}
+
+.toggle-pill-duetos.active {
+    border-color: rgba(198, 161, 91, 0.45);
+    color: var(--color-gold-soft);
+    background: rgba(198, 161, 91, 0.08);
+}
+
+/* Interruptor de tema */
+.switch .slider {
+    background-color: #2A2A2E;
+}
+
+.switch .slider:before {
+    background-color: var(--color-gold-champagne);
+}
+
+input:checked + .slider {
+    background-color: rgba(198, 161, 91, 0.35);
+}
+
+input:checked + .slider:before {
+    background-color: var(--color-gold-soft);
+}
+
+/* Paginación */
+.btn-pagination-nav {
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--color-gold-champagne);
+    font-size: 0.78rem;
+    font-weight: 600;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.btn-pagination-nav:hover:not(:disabled) {
+    border-color: rgba(198, 161, 91, 0.42);
+    background: rgba(198, 161, 91, 0.07);
+    color: var(--color-gold-soft);
+}
+
+.btn-pagination-nav:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.pagination-info,
+.catalogo-footer-pagination {
+    color: var(--muted);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+}
+
+/* ==========================================================================
+   06. FORMULARIOS
+   ========================================================================== */
+.tulum-input,
+.tulum-select,
+.tulum-textarea {
+    height: 44px;
+    background: #0E0E10;
+    border: 1px solid #2C2A27;
+    border-radius: 8px;
+    color: var(--ink);
+    padding: 0 13px;
+    font-family: var(--font-body);
+    font-size: 0.86rem;
+    font-weight: 400;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.tulum-textarea {
+    height: auto;
+    padding: 12px 13px;
+    line-height: 1.55;
+}
+
+.tulum-input::placeholder,
+.tulum-textarea::placeholder {
+    color: var(--muted-dim);
+}
+
+.tulum-input:focus,
+.tulum-select:focus,
+.tulum-textarea:focus {
+    border-color: var(--color-gold-champagne);
+    background: #111113;
+    box-shadow: 0 0 0 3px rgba(198, 161, 91, 0.14);
+}
+
+.form-group label,
+.field-label-row label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+}
+
+.tulum-input.is-invalid,
+.tulum-select.is-invalid,
+.tulum-textarea.is-invalid {
+    border-color: rgba(196, 106, 110, 0.7) !important;
+    box-shadow: 0 0 0 3px rgba(196, 106, 110, 0.12) !important;
+}
+
+.tulum-input.is-valid,
+.tulum-select.is-valid {
+    border-color: rgba(143, 169, 138, 0.7) !important;
+}
+
+.field-error-msg {
+    color: var(--danger);
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.input-with-icon svg {
+    color: var(--muted-dim);
+}
+
+.input-with-icon .tulum-input,
+.input-with-icon .tulum-select {
+    padding-left: 38px;
+}
+
+.phone-input-bolivia {
+    background: #0E0E10;
+    border: 1px solid #2C2A27;
+    border-radius: 8px;
+}
+
+.phone-input-bolivia:focus-within {
+    border-color: var(--color-gold-champagne);
+    box-shadow: 0 0 0 3px rgba(198, 161, 91, 0.14);
+}
+
+.phone-prefix-wrap,
+.phone-number-input {
+    color: var(--ink);
+    background: transparent;
+}
+
+.phone-number-input::placeholder {
+    color: var(--muted-dim);
+}
+
+.phone-char-counter {
+    color: var(--muted-dim);
+    font-size: 0.66rem;
+}
+
+.phone-divider {
+    font-size: 0;
+    width: 1px;
+    height: 18px;
+    background: var(--line-strong);
+    border-radius: 1px;
+    margin: 0 2px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+    filter: invert(1) sepia(0.55) saturate(1.6) hue-rotate(2deg);
+}
+
+body.light-theme input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: none;
+    opacity: 0.55;
+}
+
+/* ==========================================================================
+   07. TARJETAS: CANCIONES, ARTISTAS Y CATEGORÍAS
+   ========================================================================== */
+.tulum-glass-card {
+    background: #111113;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.tulum-glass-card:hover {
+    border-color: rgba(198, 161, 91, 0.24);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+}
+
+/* Canción */
+.song-card {
+    padding: 10px 12px;
+    gap: 12px;
+    background: #121214;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: none;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.song-card:hover {
+    transform: translateY(-1px);
+    background: #151517;
+    border-color: rgba(198, 161, 91, 0.32);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.song-card-img-wrap {
+    width: 58px;
+    height: 58px;
+    border-radius: 7px;
+    border: 0;
+}
+
+.song-card-title {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--ink);
+}
+
+.song-card:hover .song-card-title {
+    color: var(--color-gold-soft);
+}
+
+.song-card-artist {
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: #B7A887;
+    margin: 2px 0 4px;
+}
+
+.song-card-artist:hover {
+    color: var(--color-gold-soft);
+    text-decoration: none;
+}
+
+.song-card-desc {
+    font-size: 0.66rem;
+    color: var(--muted-dim);
+    line-height: 1.45;
+}
+
+/* Popularidad: discreta, visible solo al pasar el cursor */
+.match-badge-float {
+    bottom: 4px;
+    right: 4px;
+    padding: 1px 4px;
+    border-radius: 3px;
+    border: 0;
+    background: rgba(10, 10, 11, 0.78);
+    color: #D8CBB4;
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.song-card:hover .match-badge-float {
+    opacity: 0.9;
+}
+
+.song-play-overlay-btn {
+    background: rgba(10, 10, 11, 0.55);
+    color: var(--color-gold-soft);
+}
+
+.song-play-overlay-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Favorito: dorado, no rosa neón */
+.btn-fav-toggle {
+    color: var(--muted-dim);
+    padding: 3px;
+}
+
+.btn-fav-toggle:hover {
+    color: var(--color-gold-soft);
+    transform: none;
+}
+
+.btn-fav-toggle.is-fav svg {
+    fill: var(--color-gold-champagne);
+    stroke: var(--color-gold-champagne);
+    filter: none;
+}
+
+/* Metadatos */
+.meta-genre {
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 1px 5px;
+}
+
+.meta-year,
+.meta-duration {
+    font-size: 0.6rem;
+    color: var(--muted-dim);
+}
+
+.btn-sing-compact {
+    gap: 5px;
+    padding: 4px 9px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid rgba(198, 161, 91, 0.35);
+    color: var(--color-gold-soft);
+    font-size: 0.64rem;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-sing-compact svg {
+    width: 11px;
+    height: 11px;
+    stroke: currentColor;
+}
+
+.btn-sing-compact:hover {
+    background: var(--color-gold-champagne);
+    border-color: var(--color-gold-champagne);
+    color: var(--gold-ink);
+    transform: none;
+    box-shadow: none;
+}
+
+.btn-sing-compact:hover svg {
+    stroke: var(--gold-ink);
+}
+
+/* Artista */
+.artist-card {
+    background: #121214;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px 10px;
+}
+
+.artist-card:hover {
+    transform: translateY(-1px);
+    border-color: rgba(198, 161, 91, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+}
+
+.artist-avatar-wrap {
+    width: 66px;
+    height: 66px;
+    border: 1px solid rgba(198, 161, 91, 0.45);
+    box-shadow: none;
+    margin-bottom: 10px;
+}
+
+.artist-avatar-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid rgba(198, 161, 91, 0.18);
+    pointer-events: none;
+}
+
+.artist-name {
+    font-family: var(--font-body);
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    color: var(--ink);
+}
+
+.artist-genre {
+    font-size: 0.62rem;
+    color: var(--muted-dim);
+    letter-spacing: 0.04em;
+    margin-bottom: 7px;
+}
+
+/* Categoría */
+.category-card {
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.category-card:hover {
+    transform: none;
+    border-color: rgba(198, 161, 91, 0.35);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+.cat-card-bg img {
+    filter: brightness(0.34) saturate(0.85);
+}
+
+.cat-card-overlay {
+    background: linear-gradient(180deg, rgba(10, 10, 11, 0.15) 0%, rgba(10, 10, 11, 0.55) 55%, rgba(10, 10, 11, 0.94) 100%);
+}
+
+.cat-icon-pill {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: rgba(10, 10, 11, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: var(--color-gold-soft);
+    backdrop-filter: blur(6px);
+}
+
+.cat-title {
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+}
+
+.cat-subtitle {
+    font-size: 0.62rem;
+    color: #ADA597;
+}
+
+.cat-count-badge {
+    font-size: 0.56rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: transparent;
+    border: 1px solid rgba(198, 161, 91, 0.3);
+    border-radius: 3px;
+    padding: 1px 6px;
+    color: var(--color-gold-champagne);
+}
+
+/* ==========================================================================
+   08. VISTA INICIO
+   ========================================================================== */
+.inicio-hero-banner {
+    padding: clamp(20px, 2.4vh, 28px) clamp(20px, 2.6vw, 32px);
+    gap: 24px;
+    background: linear-gradient(135deg, #16140F 0%, #111113 52%, #0E0E10 100%);
+    border-color: rgba(198, 161, 91, 0.18);
+}
+
+.hero-ai-badge-row {
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.hero-badge-vip {
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--color-gold-champagne);
+    background: transparent;
+    border: 1px solid rgba(198, 161, 91, 0.35);
+    border-radius: 4px;
+    padding: 4px 10px;
+}
+
+.hero-badge-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 0;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #948D81;
+}
+
+.vip-pulse-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-gold-champagne);
+    box-shadow: 0 0 0 3px rgba(198, 161, 91, 0.12);
+    display: inline-block;
+    animation: none;
+}
+
+.hero-actions-row {
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.hero-actions-row .btn-gold,
+.hero-actions-row .btn-gold-outline,
+.hero-actions-row .btn-dark-pill {
+    min-height: 40px;
+    padding: 0 18px;
+    font-size: 0.78rem;
+}
+
+.hero-right-illustration {
+    opacity: 0.92;
+}
+
+.vintage-mic-glow {
+    opacity: 0.45;
+    background: radial-gradient(circle, rgba(198, 161, 91, 0.22) 0%, rgba(198, 161, 91, 0.08) 50%, transparent 72%);
+}
+
+.holo-energy-ring.ring-1 {
+    border: 1px solid rgba(198, 161, 91, 0.32);
+    box-shadow: none;
+}
+
+.holo-energy-ring.ring-2 {
+    border: 1px dashed rgba(198, 161, 91, 0.22);
+    box-shadow: none;
+}
+
+.holo-energy-ring.ring-3 {
+    border: 1px solid rgba(198, 161, 91, 0.1);
+    box-shadow: none;
+}
+
+.holo-reflection-shadow {
+    background: radial-gradient(ellipse, rgba(198, 161, 91, 0.22) 0%, transparent 70%);
+}
+
+/* Barra del visualizador */
+.inicio-visualizer-bar-card {
+    padding: 12px 18px;
+    gap: 10px;
+}
+
+.vis-status-tag {
+    gap: 8px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: #948D81;
+}
+
+.status-live-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--color-gold-champagne);
+    box-shadow: none;
+    animation: none;
+}
+
+.vis-ai-chips {
+    gap: 6px;
+}
+
+.freq-bar {
+    width: 3px;
+    background: linear-gradient(180deg, var(--color-gold-soft) 0%, var(--color-gold-champagne) 55%, var(--color-gold-dark) 100%);
+    border-radius: 2px;
+    opacity: 0.85;
+}
+
+.inicio-quick-search-box {
+    background: #0E0E10;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 4px 6px 4px 12px;
+}
+
+.quick-search-inner {
+    gap: 9px;
+}
+
+.quick-search-inner svg {
+    color: var(--muted-dim);
+    flex-shrink: 0;
+}
+
+.quick-search-inner input {
+    color: var(--ink);
+    font-size: 0.82rem;
+}
+
+.quick-search-inner input::placeholder {
+    color: var(--muted-dim);
+}
+
+/* Secciones inferiores */
+.section-title-row {
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+}
+
+.inicio-footer-metrics-bar {
+    padding: 10px 0 2px;
+    border-top: 1px solid var(--line);
+    color: var(--muted-dim);
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+}
+
+.metric-divider {
+    color: rgba(255, 255, 255, 0.14);
+}
+
+/* ==========================================================================
+   09. CATÁLOGO
+   ========================================================================== */
+.catalogo-toolbar {
+    gap: 10px;
+}
+
+.catalogo-categories-scroll {
+    gap: 6px;
+}
+
+.view-catalogo-container,
+.view-artistas-container,
+.view-favoritos-container,
+.view-categorias-container,
+.view-historial-container,
+.view-config-container,
+.view-admin-container {
+    min-height: 0;
+}
+
+/* ==========================================================================
+   10. RESERVAS
+   ========================================================================== */
+.reservas-page-title {
+    font-size: clamp(1.8rem, 2.6vw, 2.3rem);
+    color: var(--ink);
+}
+
+.reservas-page-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: #B0A897;
+}
+
+.reservation-stepper {
+    padding: 6px 0;
+}
+
+.step-item {
+    color: var(--muted-dim);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+.step-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #3A3733;
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.step-item.active .step-circle,
+.step-item.is-complete .step-circle {
+    background: var(--color-gold-champagne);
+    border-color: var(--color-gold-champagne);
+    color: var(--gold-ink);
+}
+
+.step-item.active {
+    color: var(--color-gold-soft);
+}
+
+.step-line {
+    height: 1px;
+    background: #2E2B27;
+}
+
+.reserva-unified-form {
+    background: #111113;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+}
+
+.form-sub-section-card {
+    background: #0F0F11;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.sub-section-header {
+    border-bottom: 1px solid var(--line);
+}
+
+.sub-section-badge-icon {
+    border-radius: 8px;
+    background: rgba(198, 161, 91, 0.1);
+    color: var(--color-gold-champagne);
+}
+
+.sub-section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.sub-section-desc {
+    font-size: 0.68rem;
+    color: var(--muted-dim);
+}
+
+.form-actions-split-bar {
+    border-top: 1px solid var(--line);
+}
+
+/* Caja de cuenta regresiva y comprobante */
+.reserva-step2-countdown-box,
+.reserva-success-card {
+    background: #111113;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+}
+
+.timer-circle-bg {
+    stroke: rgba(255, 255, 255, 0.09);
+}
+
+.timer-circle-progress {
+    stroke: var(--color-gold-champagne);
+}
+
+.timer-countdown-num {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.timer-label-sub {
+    color: var(--muted-dim);
+}
+
+.confirm-heading {
+    font-size: 1.7rem;
+    color: var(--ink);
+}
+
+.confirm-desc {
+    color: var(--muted);
+    font-size: 0.84rem;
+    line-height: 1.6;
+}
+
+.voucher-preview-card,
+.voucher-final-card {
+    background: #0E0E10;
+    border: 1px dashed rgba(198, 161, 91, 0.35);
+    border-radius: 10px;
+}
+
+.voucher-header {
+    border-bottom: 1px solid var(--line);
+}
+
+.voucher-title {
+    color: var(--color-gold-soft);
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.voucher-code-badge,
+.voucher-code-highlight .code {
+    background: rgba(198, 161, 91, 0.1);
+    border: 1px solid rgba(198, 161, 91, 0.35);
+    color: var(--color-gold-soft);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    letter-spacing: 0.1em;
+}
+
+.v-label,
+.voucher-item .k {
+    color: var(--muted-dim);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.v-val,
+.voucher-item .v {
+    color: var(--ink);
+    font-size: 0.82rem;
+    font-weight: 500;
+}
+
+.voucher-divider {
+    background: var(--line);
+}
+
+.success-title {
+    font-size: 2rem;
+    color: var(--ink);
+}
+
+.success-subtitle {
+    color: var(--muted);
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.gold-ring {
+    border-color: rgba(198, 161, 91, 0.4);
+    background: rgba(198, 161, 91, 0.08);
+    color: var(--color-gold-champagne);
+}
+
+.reserva-social-footer {
+    border-top: 1px solid var(--line);
+}
+
+.social-footer-text {
+    color: var(--muted-dim);
+    font-size: 0.68rem;
+}
+
+.social-link-btn {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--muted);
+}
+
+.social-link-btn:hover {
+    border-color: rgba(198, 161, 91, 0.35);
+    color: var(--color-gold-soft);
+    background: rgba(198, 161, 91, 0.06);
+}
+
+/* ==========================================================================
+   11. CENTRO DE CONTROL (ADMIN)
+   ========================================================================== */
+.admin-tabs-nav {
+    gap: 3px;
+    padding: 3px;
+    background: #101012;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.admin-tab-btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.admin-tab-btn:hover {
+    color: var(--ink);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.admin-tab-btn.active {
+    background: var(--color-gold-champagne);
+    color: var(--gold-ink);
+    font-weight: 700;
+}
+
+/* KPIs sin códigos de color neón */
+.kpi-card {
+    background: #111113;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+
+.kpi-card.gold-border,
+.kpi-card.blue-border,
+.kpi-card.green-border,
+.kpi-card.pink-border {
+    border-left: 1px solid var(--line);
+}
+
+.kpi-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: rgba(198, 161, 91, 0.08);
+    color: var(--color-gold-champagne);
+}
+
+.kpi-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted-dim);
+}
+
+.kpi-value {
+    font-family: var(--font-body);
+    font-size: 1.45rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+}
+
+.kpi-sub-trend {
+    font-size: 0.64rem;
+    color: var(--muted-dim);
+}
+
+.kpi-sub-trend.text-green {
+    color: var(--success);
+}
+
+.circle-bg {
+    stroke: rgba(255, 255, 255, 0.08);
+}
+
+.circle-progress.green-stroke {
+    stroke: var(--color-gold-champagne);
+}
+
+.chart-center-pct {
+    color: var(--color-gold-soft);
+    font-weight: 600;
+}
+
+/* Telemetría */
+.admin-telemetry-panel {
+    background: #111113;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.telem-title {
+    color: var(--muted);
+    font-size: 0.64rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.telem-badge {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    border-radius: 3px;
+    padding: 2px 7px;
+}
+
+.admin-card-panel.full-width {
+    background: #111113;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+.panel-header-row h3 {
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+}
+
+.admin-recent-log-row {
+    background: #0E0E10;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+    font-size: 0.72rem;
+}
+
+.log-time {
+    color: var(--muted-dim);
+    font-size: 0.66rem;
+}
+
+.log-acc {
+    color: var(--color-gold-champagne);
+}
+
+/* Tablas */
+.admin-table-responsive {
+    background: #111113;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.tulum-table {
+    font-size: 0.76rem;
+}
+
+.tulum-table th {
+    background: #0D0D0F;
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+}
+
+.tulum-table td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+    color: var(--ink-dim);
+}
+
+.tulum-table tbody tr:hover {
+    background: rgba(198, 161, 91, 0.03);
+}
+
+.btn-tbl-action {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+}
+
+.btn-tbl-action:hover {
+    color: var(--color-gold-soft);
+    background: rgba(198, 161, 91, 0.08);
+    border-color: rgba(198, 161, 91, 0.35);
+}
+
+.btn-tbl-action.danger:hover {
+    color: var(--danger);
+    background: rgba(196, 106, 110, 0.1);
+    border-color: rgba(196, 106, 110, 0.4);
+}
+
+.btn-tbl-action.check-btn:hover {
+    color: var(--success);
+    background: rgba(143, 169, 138, 0.1);
+    border-color: rgba(143, 169, 138, 0.4);
+}
+
+/* Estados: tonos apagados, no semáforo */
+.badge-status,
+.badge-mini {
+    border-radius: 3px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 2px 7px;
+}
+
+.badge-status.confirmada,
+.badge-mini.badge-exitoso {
+    background: rgba(143, 169, 138, 0.12);
+    color: var(--success);
+    border: 1px solid rgba(143, 169, 138, 0.28);
+}
+
+.badge-status.cancelada,
+.badge-mini.badge-cancelado {
+    background: rgba(196, 106, 110, 0.12);
+    color: var(--danger);
+    border: 1px solid rgba(196, 106, 110, 0.28);
+}
+
+.badge-status.provisional,
+.badge-mini.badge-gold {
+    background: rgba(198, 161, 91, 0.1);
+    color: var(--color-gold-soft);
+    border: 1px solid rgba(198, 161, 91, 0.28);
+}
+
+/* ==========================================================================
+   12. REPRODUCTOR DE KARAOKE
+   ========================================================================== */
+.player-modal-overlay {
+    background: rgba(6, 6, 7, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.karaoke-player-container {
+    max-width: 600px;
+    padding: 20px;
+    gap: 12px;
+    background: #0C0C0E;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.karaoke-player-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+}
+
+.player-top-title {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    color: var(--muted);
+}
+
+#playerFavHeaderBtn {
+    color: var(--color-gold-champagne);
+}
+
+.player-artwork-section {
+    padding-top: 6px;
+}
+
+.player-vinyl-disc {
+    width: 128px;
+    height: 128px;
+    border: 1px solid rgba(198, 161, 91, 0.4);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    margin-bottom: 12px;
+}
+
+.vinyl-center-hole {
+    width: 14px;
+    height: 14px;
+    background: #0C0C0E;
+    border: 1px solid rgba(198, 161, 91, 0.6);
+}
+
+.player-info-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.player-song-title {
+    font-size: 1.55rem;
+    color: var(--ink);
+    line-height: 1.1;
+}
+
+.player-artist-name {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+.badge-genre {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 7px;
+    padding: 3px 9px;
+    border: 1px solid rgba(198, 161, 91, 0.3);
+    border-radius: 4px;
+    color: var(--color-gold-champagne);
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.karaoke-visualizer-bars {
+    gap: 3px;
+    height: 26px;
+    margin-top: 4px;
+}
+
+.karaoke-waves-bar {
+    width: 2.5px;
+    background: linear-gradient(180deg, var(--color-gold-soft) 0%, var(--color-gold-dark) 100%);
+    border-radius: 2px;
+}
+
+.karaoke-lyrics-box {
+    background: #08080A;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.lyrics-scroll-inner {
+    gap: 10px;
+}
+
+.lyric-line {
+    color: var(--muted-dim);
+    font-size: 0.82rem;
+    line-height: 1.45;
+    transition: color 0.25s ease, font-size 0.25s ease;
+}
+
+.lyric-line.active {
+    color: var(--color-gold-soft);
+    font-size: 1.05rem;
+    font-weight: 600;
+    transform: none;
+    text-shadow: none;
+}
+
+.lyric-line.past {
+    color: #837D72;
+}
+
+.player-time-label {
+    font-size: 0.66rem;
+    color: var(--muted-dim);
+    font-variant-numeric: tabular-nums;
+}
+
+.player-progress-bar-bg {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.player-progress-bar-fill {
+    background: var(--color-gold-champagne);
+    background-image: none;
+}
+
+.player-controls-row {
+    gap: 24px;
+}
+
+.btn-player-action {
+    color: var(--muted);
+}
+
+.btn-player-action:hover {
+    color: var(--color-gold-soft);
+    transform: none;
+}
+
+.btn-player-play-gold {
+    width: 56px;
+    height: 56px;
+    background: var(--color-gold-champagne);
+    background-image: none;
+    color: var(--gold-ink);
+    border: 0;
+    box-shadow: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-player-play-gold:hover {
+    background: var(--color-gold-soft);
+    transform: scale(1.03);
+}
+
+.player-footer-actions {
+    gap: 10px;
+    padding-top: 4px;
+}
+
+.player-footer-actions .btn-gold,
+.player-footer-actions .btn-gold-outline {
+    flex: 1;
+    min-height: 40px;
+    font-size: 0.76rem;
+}
+
+/* ==========================================================================
+   13. MODALES, TOASTS Y SPLASH
+   ========================================================================== */
+.modal-overlay {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+}
+
+.modal-card {
+    background: #101012;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+}
+
+.modal-header {
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--line);
+}
+
+.modal-header h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.modal-body {
+    padding: 18px 22px;
+    color: var(--ink-dim);
+    font-size: 0.86rem;
+    line-height: 1.6;
+}
+
+.modal-footer {
+    padding: 14px 22px;
+    border-top: 1px solid var(--line);
+}
+
+.song-details-title {
+    font-size: 1.7rem;
+    color: var(--ink);
+}
+
+.song-details-score-badge,
+.badge-genre {
+    background: transparent;
+}
+
+.detail-row,
+.player-info-meta {
+    color: var(--muted);
+}
+
+/* Toasts */
+.toast-item {
+    background: #141416;
+    border: 1px solid var(--line);
+    border-left: 2px solid var(--line-strong);
+    border-radius: 10px;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+    padding: 12px 16px;
+}
+
+.toast-item.toast-success {
+    border-left-color: var(--success);
+}
+
+.toast-item.toast-error {
+    border-left-color: var(--danger);
+}
+
+.toast-item.toast-warning {
+    border-left-color: var(--color-gold-champagne);
+}
+
+.toast-item.toast-info {
+    border-left-color: var(--color-electric-blue);
+}
+
+.toast-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.toast-msg {
+    font-size: 0.74rem;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+/* Splash: elegante, sin órbitas de neón */
+.splash-futuristic {
+    background:
+        radial-gradient(ellipse at 50% 38%, #1B1812 0%, #101012 46%, #09090A 100%);
+}
+
+.splash-ambient-mesh {
+    opacity: 0.32;
+}
+
+.mesh-orb.orb-violet {
+    background: rgba(198, 161, 91, 0.12);
+}
+
+.mesh-orb.orb-gold {
+    background: rgba(198, 161, 91, 0.14);
+}
+
+.mesh-orb.orb-blue {
+    background: rgba(198, 161, 91, 0.04);
+}
+
+.splash-brand-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-super-badge {
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    color: var(--color-gold-champagne);
+}
+
+.splash-brand-title {
+    font-size: clamp(2.4rem, 5.6vw, 3.6rem);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--ink);
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: currentColor;
+    text-shadow: none;
+    margin-bottom: 4px;
+}
+
+.splash-slogan {
+    font-size: clamp(0.66rem, 1vw, 0.8rem);
+    font-weight: 500;
+    letter-spacing: 0.42em;
+    color: #948D81;
+}
+
+.splash-waves-container {
+    gap: 5px;
+    height: 44px;
+    margin-bottom: 26px;
+}
+
+.wave-bar {
+    width: 3px;
+    background: linear-gradient(180deg, var(--color-gold-soft) 0%, var(--color-gold-dark) 100%);
+    animation-name: musicWavePulseSoft;
+}
+
+.splash-btn-entrar {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 13px 38px;
+    border-radius: 8px;
+}
+
+.splash-btn-entrar .btn-glow-pulse {
+    display: none;
+}
+
+.splash-location-tag {
+    margin-top: 26px;
+    font-size: 0.64rem;
+    letter-spacing: 0.16em;
+    color: var(--muted-dim);
+    text-transform: uppercase;
+}
+
+.splash-location-tag .status-live-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--color-gold-champagne);
+}
+
+/* Anillos de energía del splash: trazo fino dorado */
+.energy-orbit.orbit-1 {
+    border: 1px solid rgba(198, 161, 91, 0.3);
+    box-shadow: none;
+}
+
+.energy-orbit.orbit-2 {
+    border: 1px dashed rgba(198, 161, 91, 0.22);
+    box-shadow: none;
+}
+
+.energy-orbit.orbit-3 {
+    border: 1px solid rgba(198, 161, 91, 0.1);
+    box-shadow: none;
+}
+
+@keyframes musicWavePulseSoft {
+    0%, 100% {
+        height: 10px;
+        opacity: 0.55;
+        filter: none;
+    }
+    50% {
+        height: 40px;
+        opacity: 1;
+        filter: none;
+    }
+}
+
+/* ==========================================================================
+   14. TEMA CLARO
+   ========================================================================== */
+body.light-theme {
+    --color-bg-space: #F4F1EA;
+    --color-bg-deep: #EBE6DC;
+    --color-bg-surface: #FFFFFF;
+    --color-bg-surface-elevated: #F8F5EE;
+    --color-white-luminous: #201D18;
+    --color-gray-sec: #6B655B;
+    --color-border-subtle: rgba(120, 95, 52, 0.2);
+    --color-border-glow: rgba(120, 95, 52, 0.3);
+
+    --ink: #201D18;
+    --ink-dim: #4A443B;
+    --muted: #6B655B;
+    --muted-dim: #8A8377;
+    --line: rgba(32, 29, 24, 0.1);
+    --line-strong: rgba(32, 29, 24, 0.16);
+    --gold-ink: #171208;
+}
+
+body.light-theme .app-container {
+    background:
+        radial-gradient(ellipse at 82% -10%, rgba(198, 161, 91, 0.14), transparent 42%),
+        var(--color-bg-space);
+}
+
+body.light-theme .app-header,
+body.light-theme .sidebar-drawer,
+body.light-theme .app-bottom-nav {
+    background: rgba(250, 248, 243, 0.96);
+}
+
+body.light-theme .tulum-glass-card,
+body.light-theme .song-card,
+body.light-theme .artist-card,
+body.light-theme .kpi-card,
+body.light-theme .admin-card-panel.full-width,
+body.light-theme .admin-telemetry-panel,
+body.light-theme .admin-table-responsive,
+body.light-theme .reserva-unified-form,
+body.light-theme .form-sub-section-card,
+body.light-theme .modal-card,
+body.light-theme .toast-item {
+    background: #FFFDF9;
+}
+
+body.light-theme .inicio-hero-banner {
+    background: linear-gradient(135deg, #F7F1E6 0%, #FCFAF6 55%, #FFFFFF 100%);
+}
+
+body.light-theme .tulum-input,
+body.light-theme .tulum-select,
+body.light-theme .tulum-textarea,
+body.light-theme .phone-input-bolivia,
+body.light-theme .inicio-quick-search-box,
+body.light-theme .karaoke-lyrics-box {
+    background: #FFFDF9;
+    border-color: #DDD6C9;
+    color: var(--ink);
+}
+
+body.light-theme .header-center-route,
+body.light-theme .brand-slogan,
+body.light-theme .hero-badge-gold,
+body.light-theme .vis-status-tag {
+    color: #6B655B;
+}
+
+body.light-theme .sidebar-nav-item.active {
+    color: #7A5F33;
+    background: rgba(198, 161, 91, 0.16);
+}
+
+body.light-theme .song-card:hover,
+body.light-theme .artist-card:hover {
+    background: #FFFFFF;
+}
+
+/* ==========================================================================
+   15. RESPONSIVE MÓVIL
+   ========================================================================== */
+@media (max-width: 1200px) {
+    .header-center-route {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .app-container {
+        grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+
+    .app-header {
+        height: auto;
+        min-height: 92px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+        padding: 10px 14px;
+    }
+
+    .header-left {
+        min-width: 0;
+        gap: 10px;
+    }
+
+    .brand-crest-btn {
+        min-width: 0;
+        gap: 8px;
+    }
+
+    .tulum-icon-crest {
+        width: 28px;
+        height: 28px;
+        flex: 0 0 28px;
+    }
+
+    .brand-title {
+        font-size: 0.98rem;
+        letter-spacing: 0.12em;
+        white-space: nowrap;
+    }
+
+    .brand-slogan {
+        font-size: 0.52rem;
+        letter-spacing: 0.14em;
+        white-space: nowrap;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 6px;
+    }
+
+    .header-right .btn-header-action {
+        width: 34px;
+        height: 34px;
+    }
+
+    .btn-header-vip-pill {
+        height: 34px;
+        padding: 0 12px;
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+    }
+
+    .btn-header-admin-pill {
+        width: 34px;
+        height: 34px;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .btn-header-admin-pill span {
+        display: none;
+    }
+
+    .app-content-area {
+        padding: 14px 14px max(18px, env(safe-area-inset-bottom));
+        scrollbar-gutter: auto;
+    }
+
+    /* Inicio */
+    .view-inicio-container {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        min-height: 100%;
+        overflow: visible;
+        gap: 16px;
+    }
+
+    .inicio-hero-banner {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px 18px;
+        gap: 14px;
+        border-radius: 14px;
+    }
+
+    .hero-left-content {
+        min-width: 0;
+    }
+
+    .hero-ai-badge-row {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.9rem, 7vw, 2.3rem);
+        line-height: 1.05;
+    }
+
+    .hero-subtitle {
+        margin-top: 4px;
+        font-size: 1rem;
+    }
+
+    .hero-desc-lounge {
+        margin-top: 8px;
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .hero-actions-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .hero-actions-row button {
+        justify-content: center;
+        min-height: 40px;
+    }
+
+    .hero-actions-row .btn-dark-pill {
+        grid-column: 1 / -1;
+    }
+
+    .inicio-visualizer-bar-card {
+        padding: 12px;
+    }
+
+    .visualizer-header-row {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .vis-status-tag {
+        line-height: 1.45;
+        font-size: 0.6rem;
+    }
+
+    .vis-ai-chips {
+        max-width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    .vis-center-waves-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .visualizer-frequencies {
+        height: 28px;
+        justify-content: center;
+    }
+
+    .inicio-quick-search-box {
+        width: 100%;
+    }
+
+    .quick-search-inner {
+        min-width: 0;
+    }
+
+    .quick-search-inner input {
+        min-width: 0;
+    }
+
+    .inicio-subpanel {
+        min-width: 0;
+        height: auto;
+        overflow: visible;
+        padding: 0;
+        gap: 10px;
+    }
+
+    .section-title-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+        margin: 0;
+        padding-bottom: 9px;
+    }
+
+    .section-title-row > div {
+        min-width: 0;
+    }
+
+    .section-heading-gold,
+    .section-title-row h2 {
+        font-size: 1.16rem;
+        line-height: 1.2;
+    }
+
+    .section-title-row .btn-link-gold {
+        align-self: flex-start;
+        text-align: left;
+        white-space: normal;
+    }
+
+    .inicio-songs-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+        gap: 8px;
+        overflow: visible;
+    }
+
+    .inicio-songs-grid .song-card {
+        min-width: 0;
+    }
+
+    .inicio-artists-scroll {
+        display: grid;
+        grid-auto-columns: 132px;
+        grid-auto-flow: column;
+        grid-template-columns: none;
+        overflow-x: auto;
+        overscroll-behavior-inline: contain;
+        gap: 8px;
+        padding: 2px 1px 8px;
+        scrollbar-width: thin;
+    }
+
+    .artist-card {
+        min-width: 0;
+        padding: 14px 8px;
+    }
+
+    .inicio-categories-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
+        overflow: visible;
+        gap: 8px;
+    }
+
+    .inicio-footer-metrics-bar {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        justify-content: stretch;
+        gap: 12px;
+        padding: 14px 0 4px;
+    }
+
+    .footer-social-box {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .footer-social-invite {
+        max-width: 28ch;
+        line-height: 1.45;
+    }
+
+    .footer-social-links {
+        gap: 7px;
+    }
+
+    .footer-metrics-pills {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 9px;
+    }
+
+    /* Catálogo y tarjetas en móvil */
+    .app-bottom-nav {
+        min-height: 62px;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .bottom-nav-item {
+        min-width: 0;
+        flex: 1;
+        gap: 3px;
+        font-size: 0.6rem;
+    }
+
+    .bottom-nav-item svg {
+        width: 19px;
+        height: 19px;
+    }
+
+    .song-card {
+        padding: 9px 10px;
+        gap: 10px;
+    }
+
+    .song-card-img-wrap {
+        width: 48px;
+        height: 48px;
+    }
+
+    .song-card-title {
+        font-size: 0.86rem;
+    }
+
+    .song-card-desc {
+        display: none;
+    }
+
+    .filter-pill {
+        font-size: 0.7rem;
+        padding: 5px 11px;
+    }
+
+    .catalogo-toolbar {
+        gap: 8px;
+    }
+
+    /* Reservas */
+    .reservas-page-title {
+        font-size: 1.7rem;
+    }
+
+    .reservas-page-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .reserva-unified-form {
+        border-radius: 12px;
+    }
+
+    .form-sub-section-card {
+        padding: 12px;
+    }
+
+    .tulum-input,
+    .tulum-select,
+    .phone-input-bolivia {
+        height: 42px;
+        font-size: 0.84rem;
+    }
+
+    .form-actions-split-bar {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .btn-reserva-back,
+    .btn-reserva-continue,
+    .btn-reserva-edit,
+    .btn-reserva-confirm {
+        height: 42px;
+        font-size: 0.76rem;
+    }
+
+    /* Admin */
+    .admin-dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .kpi-card {
+        padding: 12px;
+    }
+
+    .kpi-value {
+        font-size: 1.25rem;
+    }
+
+    /* Reproductor */
+    .karaoke-player-container {
+        height: 100dvh;
+        max-width: 100%;
+        border-radius: 0;
+        border: 0;
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .player-vinyl-disc {
+        width: 108px;
+        height: 108px;
+    }
+
+    .player-song-title {
+        font-size: 1.35rem;
+    }
+
+    .karaoke-lyrics-box {
+        padding: 13px;
+    }
+
+    .lyric-line.active {
+        font-size: 1rem;
+    }
+
+    .player-controls-row {
+        gap: 18px;
+    }
+
+    .player-footer-actions {
+        flex-direction: column;
+    }
+
+    .player-footer-actions .btn-gold,
+    .player-footer-actions .btn-gold-outline {
+        width: 100%;
+        flex: none;
+    }
+
+    /* Splash */
+    .splash-brand-title {
+        font-size: 2.2rem;
+        letter-spacing: 0.16em;
+    }
+
+    .splash-btn-entrar {
+        padding: 12px 30px;
+        font-size: 0.74rem;
+    }
+}
+
+/* ==========================================================================
+   16. MOVIMIENTO REDUCIDO
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

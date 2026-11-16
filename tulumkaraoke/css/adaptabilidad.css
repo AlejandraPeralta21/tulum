@@ -1,0 +1,420 @@
+/*
+ * Ajustes finales de adaptabilidad para laptop, tablet y celular.
+ * Se carga después de refinamiento.css para conservar el diseño original
+ * y corregir únicamente el comportamiento según el espacio disponible.
+ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-width: 320px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    width: 100%;
+    min-width: 320px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+    max-width: 100%;
+}
+
+.app-container {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+}
+
+.app-header,
+.app-content-area,
+.app-bottom-nav,
+.view-inicio-container,
+.view-reservas-container,
+.view-catalogo-container,
+.view-categorias-container,
+.view-favoritos-container,
+.view-admin-container {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.app-content-area {
+    scrollbar-gutter: stable;
+    padding-bottom: max(18px, env(safe-area-inset-bottom));
+}
+
+.app-content-area > *,
+.view-inicio-container > *,
+.view-reservas-container > *,
+.admin-dashboard-grid > * {
+    min-width: 0;
+}
+
+/* Inicio usa un flujo continuo para que ninguna sección quede cortada. */
+.app-content-area:has(> .view-inicio-container) {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.view-inicio-container {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    overflow: visible;
+    padding: 0 2px 12px;
+    gap: clamp(18px, 2.2vw, 28px);
+}
+
+.inicio-hero-banner,
+.inicio-visualizer-bar-card,
+.inicio-subpanel {
+    flex: 0 0 auto;
+}
+
+.inicio-hero-banner {
+    min-height: 180px;
+}
+
+.inicio-subpanel {
+    height: auto;
+    overflow: visible;
+}
+
+.inicio-songs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: minmax(118px, auto);
+    grid-template-rows: auto;
+    gap: 12px;
+    overflow: visible;
+}
+
+.inicio-artists-scroll {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    gap: 12px;
+    overflow: visible;
+}
+
+.inicio-categories-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto;
+    grid-auto-rows: minmax(112px, auto);
+    flex: 0 0 auto;
+    overflow: visible;
+}
+
+.inicio-footer-metrics-bar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 12px;
+    padding: 10px 0 16px;
+}
+
+/* Tema claro: tinta oscura, fondos blancos cálidos y acentos dorados legibles. */
+body.light-theme {
+    color-scheme: light;
+    --ink: #29251F;
+    --ink-dim: #494238;
+    --muted: #625B50;
+    --muted-dim: #756D61;
+    --color-gray-sec: #625B50;
+    --color-gold-champagne: #8A641E;
+    --color-gold-soft: #735116;
+    --color-gold-dark: #65480F;
+    --color-white-luminous: #29251F;
+    --line: rgba(53, 45, 31, 0.14);
+    --line-strong: rgba(53, 45, 31, 0.23);
+    --color-border-subtle: rgba(107, 79, 31, 0.2);
+}
+
+body.light-theme .app-container {
+    background: #F5F2EC;
+}
+
+body.light-theme .app-content-area {
+    color: #29251F;
+}
+
+body.light-theme .app-header,
+body.light-theme .app-bottom-nav,
+body.light-theme .sidebar-drawer {
+    background: rgba(255, 253, 249, 0.97);
+    color: #29251F;
+    border-color: rgba(53, 45, 31, 0.13);
+}
+
+body.light-theme .brand-title,
+body.light-theme .section-heading-gold,
+body.light-theme .section-title-row h2,
+body.light-theme .reservas-page-title,
+body.light-theme .hero-title {
+    color: #29251F;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+}
+
+body.light-theme .hero-title {
+    font-size: clamp(2rem, 4vw, 3.35rem);
+    line-height: 1.08;
+}
+
+body.light-theme .hero-subtitle,
+body.light-theme .hero-desc-lounge,
+body.light-theme .song-card-artist,
+body.light-theme .song-card-desc,
+body.light-theme .footer-social-invite,
+body.light-theme .metric-tag,
+body.light-theme .brand-slogan {
+    color: #514B42;
+}
+
+body.light-theme .section-kicker,
+body.light-theme .btn-link-gold,
+body.light-theme .metric-tag svg {
+    color: #765313;
+}
+
+body.light-theme .tulum-glass-card,
+body.light-theme .song-card,
+body.light-theme .artist-card,
+body.light-theme .kpi-card,
+body.light-theme .admin-card-panel.full-width,
+body.light-theme .admin-telemetry-panel,
+body.light-theme .admin-table-responsive,
+body.light-theme .reserva-unified-form,
+body.light-theme .form-sub-section-card,
+body.light-theme .modal-card,
+body.light-theme .inicio-quick-search-box {
+    background: #FFFEFC;
+    color: #29251F;
+    border-color: rgba(107, 79, 31, 0.2);
+    box-shadow: 0 6px 20px rgba(65, 52, 30, 0.07);
+}
+
+body.light-theme .inicio-hero-banner {
+    background: linear-gradient(120deg, #FFFDF8, #F1E8D7);
+}
+
+body.light-theme .inicio-visualizer-bar-card {
+    background: #FFFEFC;
+}
+
+body.light-theme .song-card-title,
+body.light-theme .artist-name,
+body.light-theme .cat-title,
+body.light-theme .bottom-nav-item,
+body.light-theme .sidebar-nav-item {
+    color: #29251F;
+}
+
+body.light-theme .quick-search-inner input,
+body.light-theme .tulum-input,
+body.light-theme .tulum-select,
+body.light-theme .tulum-textarea,
+body.light-theme .phone-input-bolivia {
+    color: #29251F;
+}
+
+body.light-theme .chip-sm {
+    background: #F6F2EA;
+    border-color: #DED5C5;
+    color: #494238;
+}
+
+body.light-theme .social-btn,
+body.light-theme .btn-header-action,
+body.light-theme .btn-header-admin-pill {
+    color: #494238;
+    border-color: rgba(53, 45, 31, 0.2);
+}
+
+/* Tabletas: más aire que en teléfono y navegación accesible al tacto. */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .app-container {
+        grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+
+    .app-bottom-nav {
+        display: flex !important;
+        min-height: 64px;
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .app-header {
+        padding-inline: clamp(16px, 3vw, 30px);
+    }
+
+    .app-content-area {
+        padding: clamp(16px, 2.4vw, 26px);
+    }
+
+    .inicio-sections-split {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto;
+    }
+
+    .catalogo-songs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
+    }
+
+    .categorias-grid-layout,
+    .artistas-grid-layout {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: auto;
+    }
+
+    .admin-dashboard-grid,
+    .historial-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .inicio-songs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: minmax(112px, auto);
+    }
+
+    .inicio-artists-scroll {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .inicio-categories-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Teléfonos y ventanas estrechas: una sola columna cuando las tarjetas
+   no caben cómodamente, sin recortar textos ni controles. */
+@media (max-width: 767px) {
+    .app-container {
+        height: 100dvh;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+
+    .app-header {
+        padding-inline: max(12px, env(safe-area-inset-left));
+    }
+
+    .app-content-area {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        scrollbar-gutter: auto;
+    }
+
+    .app-bottom-nav {
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .admin-dashboard-grid,
+    .historial-cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .admin-card-panel.full-width {
+        grid-column: 1 / -1;
+    }
+
+    .form-actions-split-bar {
+        flex-wrap: wrap;
+    }
+
+    .form-actions-split-bar > button {
+        min-width: 0;
+        flex: 1 1 130px;
+    }
+
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+        font-size: max(16px, 1em);
+    }
+}
+
+@media (max-width: 420px) {
+    .app-header {
+        gap: 6px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+    }
+
+    .brand-title {
+        font-size: clamp(0.82rem, 4vw, 0.98rem);
+        letter-spacing: 0.08em;
+    }
+
+    .brand-slogan {
+        font-size: 0.48rem;
+        letter-spacing: 0.1em;
+    }
+
+    .header-right {
+        gap: 5px;
+    }
+
+    .btn-header-vip-pill {
+        padding-inline: 8px;
+        letter-spacing: 0.06em;
+    }
+
+    .inicio-artists-scroll {
+        grid-auto-columns: minmax(112px, 38vw);
+    }
+
+    .admin-dashboard-grid,
+    .historial-cards-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .inicio-songs-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .inicio-artists-scroll {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .inicio-categories-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* En horizontal, el contenido sigue desplazable y la cabecera no fuerza
+   una altura fija que quite espacio útil a las vistas. */
+@media (max-height: 500px) and (orientation: landscape) {
+    .app-container {
+        height: 100dvh;
+    }
+
+    .app-header {
+        min-height: 48px;
+    }
+
+    .app-content-area {
+        overflow-y: auto;
+    }
+
+    .app-bottom-nav {
+        min-height: 52px;
+    }
+}

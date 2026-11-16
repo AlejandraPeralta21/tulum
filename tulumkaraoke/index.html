@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#07070B">
+    <meta name="description" content="KARAOKE TULUM - Karaoke Lounge VIP. La experiencia más exclusiva de entretenimiento musical y salas privadas en la Riviera Maya.">
+    <title>KARAOKE TULUM | Luxury Karaoke Lounge VIP</title>
+
+    <!-- Google Fonts Especializadas en Karaoke: Bebas Neue, DM Sans & Cormorant Garamond -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+    <!-- Hojas de Estilos del Proyecto -->
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/refinamiento.css">
+    <link rel="stylesheet" href="css/adaptabilidad.css">
+</head>
+<body class="light-theme">
+
+    <!-- ==========================================================
+         SPLASH SCREEN CINEMATOGRÁFICO - KARAOKE TULUM LOUNGE VIP
+         ========================================================== -->
+    <div id="splashScreen" class="splash-screen splash-futuristic" data-component="splash-screen">
+        <!-- Partículas y Malla de Luz de Fondo -->
+        <div class="splash-ambient-mesh">
+            <div class="mesh-orb orb-violet"></div>
+            <div class="mesh-orb orb-gold"></div>
+            <div class="mesh-orb orb-blue"></div>
+            <div class="particles-field"></div>
+        </div>
+
+        <div class="splash-center-stage">
+            <!-- Micrófono Holográfico Tridimensional con Anillos de Energía -->
+            <div class="splash-holo-mic-container">
+                <div class="energy-orbit orbit-1"></div>
+                <div class="energy-orbit orbit-2"></div>
+                <div class="energy-orbit orbit-3"></div>
+                
+                <svg class="splash-crest-svg" width="130" height="130" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="46" stroke="url(#splashGold)" stroke-width="2" stroke-dasharray="3 3" opacity="0.7"/>
+                    <circle cx="50" cy="50" r="41" stroke="url(#splashViolet)" stroke-width="2"/>
+                    <!-- Palmeras Holográficas -->
+                    <path d="M30 52 C28 42 22 36 18 38 C22 42 24 48 26 53" stroke="url(#splashGold)" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M30 50 C26 44 20 45 19 49 C24 50 27 52 29 55" stroke="url(#splashGold)" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M30 54 C30 65 29 70 28 74" stroke="url(#splashGold)" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M70 52 C72 42 78 36 82 38 C78 42 76 48 74 53" stroke="url(#splashGold)" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M70 50 C74 44 80 45 81 49 C76 50 73 52 71 55" stroke="url(#splashGold)" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M70 54 C70 65 71 70 72 74" stroke="url(#splashGold)" stroke-width="1.8" stroke-linecap="round"/>
+                    <!-- Micrófono Shure 3D -->
+                    <rect x="42" y="27" width="16" height="26" rx="8" fill="url(#splashGold)" stroke="#07070B" stroke-width="1.2"/>
+                    <line x1="42" y1="34" x2="58" y2="34" stroke="#07070B" stroke-width="1.4"/>
+                    <line x1="42" y1="40" x2="58" y2="40" stroke="#07070B" stroke-width="1.4"/>
+                    <line x1="42" y1="46" x2="58" y2="46" stroke="#07070B" stroke-width="1.4"/>
+                    <line x1="50" y1="27" x2="50" y2="53" stroke="#07070B" stroke-width="1.4"/>
+                    <path d="M38 43 C38 57 62 57 62 43" stroke="url(#splashGold)" stroke-width="2.4" stroke-linecap="round"/>
+                    <line x1="50" y1="56" x2="50" y2="68" stroke="url(#splashGold)" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M42 68 H58" stroke="url(#splashGold)" stroke-width="3" stroke-linecap="round"/>
+                    <defs>
+                        <linearGradient id="splashGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F8F7FF" />
+                            <stop offset="30%" stop-color="#F0D9A0" />
+                            <stop offset="70%" stop-color="#D8B978" />
+                            <stop offset="100%" stop-color="#9E7D3B" />
+                        </linearGradient>
+                        <linearGradient id="splashViolet" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#E5D2A8" />
+                            <stop offset="100%" stop-color="#8C7038" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <div class="splash-brand-group">
+                <span class="splash-super-badge">KARAOKE LOUNGE VIP</span>
+                <h1 class="splash-brand-title">KARAOKE TULUM</h1>
+                <p class="splash-slogan">CANTA · DISFRUTA · VIVE</p>
+            </div>
+
+            <!-- Ondas Sonoras Reactivas Simuladas -->
+            <div class="splash-waves-container">
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+                <span class="wave-bar"></span>
+            </div>
+
+            <!-- Botón Principal con Transición Cinematográfica -->
+            <button id="splashBtnComenzar" class="splash-btn-entrar">
+                <span class="btn-text">ENTRAR A TULUM</span>
+                <span class="btn-glow-pulse"></span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+
+            <div class="splash-location-tag">
+                <span class="status-live-dot"></span>
+                <span>Riviera Maya · Tulum, México</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================
+         APLICACIÓN SPA PRINCIPAL (100dvh CERO SCROLL)
+         Estructura Semántica con Soporte para Hidratación
+         ========================================================== -->
+    <div class="app-container" data-component="app-shell" data-hydration="pending">
+
+        <!-- Microindicador de Estado de Hidratación -->
+        <div id="hydrationStatusBadge" class="hydration-status-badge">
+            <span class="status-pulse-led"></span>
+            <span class="status-text">Cargando Karaoke Tulum...</span>
+            <div class="status-progress-track">
+                <div class="status-progress-fill" style="width: 15%;"></div>
+            </div>
+        </div>
+
+        <!-- HEADER SUPERIOR SEMÁNTICO -->
+        <header class="app-header" data-component="app-header" data-hydration="pending">
+            <div class="header-left">
+                <button id="btnHamburgerMenu" class="btn-header-action" title="Abrir Menú">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+                <div class="brand-crest-btn" onclick="window.router.navigate('inicio');" style="cursor: pointer;">
+                    <svg class="tulum-icon-crest" width="36" height="36" viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="44" stroke="#D8B978" stroke-width="2"/>
+                        <rect x="44" y="32" width="12" height="20" rx="6" fill="#D8B978"/>
+                        <path d="M40 43 C40 54 60 54 60 43" stroke="#D8B978" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="50" y1="54" x2="50" y2="64" stroke="#D8B978" stroke-width="2.5"/>
+                    </svg>
+                    <div class="brand-text-col">
+                        <span class="brand-title">KARAOKE TULUM</span>
+                        <span class="brand-slogan">CANTA · DISFRUTA · VIVE</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Indicador Central de Ruta Activa -->
+            <div class="header-center-route" id="headerCurrentRoute">
+                INICIO
+            </div>
+
+            <!-- Accesos Rápidos del Lounge VIP -->
+            <div class="header-right">
+                <button class="btn-header-vip-pill" onclick="window.router.navigate('reservas');" title="Reservar Sala VIP">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>RESERVAR</span>
+                </button>
+
+                <button class="btn-header-action" onclick="window.router.navigate('catalogo');" title="Buscar Canciones">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+                <button class="btn-header-action" onclick="window.router.navigate('favoritos');" title="Mis Favoritos">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </button>
+                <button class="btn-header-admin-pill" onclick="window.router.navigate('admin');" title="Panel Administrador">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <span>Control</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ÁREA DE CONTENIDO SPA DINÁMICO (Cero Scroll) -->
+        <main class="app-content-area" id="appContentArea" data-component="app-content" data-hydration="pending">
+            <!-- Esqueleto de Carga Inicial Antes de Hidratación -->
+            <div class="initial-app-skeleton">
+                <div class="skeleton-hero-card shimmer"></div>
+                <div class="skeleton-grid-row">
+                    <div class="skeleton-card shimmer"></div>
+                    <div class="skeleton-card shimmer"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- BOTTOM NAVIGATION BAR (MÓVIL) -->
+        <nav class="app-bottom-nav" data-component="bottom-nav" data-hydration="pending">
+            <button class="bottom-nav-item active" data-route="inicio">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                <span>Inicio</span>
+            </button>
+            <button class="bottom-nav-item" data-route="catalogo">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span>Canciones</span>
+            </button>
+            <button class="bottom-nav-item" data-route="categorias">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                <span>Categorías</span>
+            </button>
+            <button class="bottom-nav-item" data-route="reservas">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>Reservas</span>
+            </button>
+            <button class="bottom-nav-item" data-route="favoritos">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span>Favoritos</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- ==========================================================
+         MENÚ HAMBURGUESA LATERAL (10 SECCIONES)
+         ========================================================== -->
+    <div id="drawerOverlay" class="drawer-overlay"></div>
+    <aside id="sidebarDrawer" class="sidebar-drawer" data-component="sidebar-drawer" data-hydration="pending">
+        <div class="sidebar-header">
+            <div class="sidebar-brand-box">
+                <svg class="tulum-icon-crest" width="34" height="34" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="44" stroke="#D8B978" stroke-width="2"/>
+                    <rect x="44" y="32" width="12" height="20" rx="6" fill="#D8B978"/>
+                    <path d="M40 43 C40 54 60 54 60 43" stroke="#D8B978" stroke-width="2"/>
+                </svg>
+                <div class="brand-text-col">
+                    <span class="brand-title">KARAOKE TULUM</span>
+                    <span class="brand-slogan">KARAOKE LOUNGE VIP</span>
+                </div>
+            </div>
+            <button id="btnSidebarClose" class="btn-header-action" title="Cerrar Menú">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+
+        <nav class="sidebar-menu-list">
+            <!-- 1. Inicio -->
+            <a href="#inicio" class="sidebar-nav-item active" data-route="inicio">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+                <span>Inicio</span>
+            </a>
+            <!-- 2. Explorar canciones -->
+            <a href="#catalogo" class="sidebar-nav-item" data-route="catalogo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <span>Explorar canciones</span>
+            </a>
+            <!-- 3. Categorías -->
+            <a href="#categorias" class="sidebar-nav-item" data-route="categorias">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+                <span>Categorías</span>
+            </a>
+            <!-- 4. Artistas -->
+            <a href="#artistas" class="sidebar-nav-item" data-route="artistas">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                <span>Artistas</span>
+            </a>
+            <!-- 5. Favoritos -->
+            <a href="#favoritos" class="sidebar-nav-item" data-route="favoritos">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <span>Favoritos</span>
+            </a>
+            <!-- 6. Mis reservas -->
+            <a href="#reservas" class="sidebar-nav-item" data-route="reservas">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg>
+                <span>Reservar sala</span>
+            </a>
+            <!-- 7. Historial -->
+            <a href="#historial" class="sidebar-nav-item" data-route="historial">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                <span>Historial de reservas</span>
+            </a>
+            <!-- 8. Panel administrador -->
+            <a href="#admin" class="sidebar-nav-item" data-route="admin">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                <span>Centro de control</span>
+            </a>
+            <!-- 9. Configuración -->
+            <a href="#configuracion" class="sidebar-nav-item" data-route="configuracion">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                <span>Configuración</span>
+            </a>
+            <!-- 10. Cerrar sesión -->
+            <a href="#" id="sidebarLogoutBtn" class="sidebar-nav-item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <span>Cerrar sesión</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="theme-toggle-row">
+                <span>Modo oscuro espacial</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" aria-label="Activar modo oscuro">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ==========================================================
+         MODAL DEL REPRODUCTOR DE KARAOKE HOLOGRÁFICO
+         ========================================================== -->
+    <div id="playerModalOverlay" class="player-modal-overlay" data-component="karaoke-player">
+        <div id="playerModalContent"></div>
+    </div>
+
+    <!-- ==========================================================
+         MODAL GENÉRICO DE ACCIONES / CONFIRMACIONES
+         ========================================================== -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modalTitulo">Mensaje de Karaoke Tulum</h3>
+                <button id="modalCloseBtn" class="btn-header-action">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button id="modalBtnCancelar" class="btn-gold-outline">Cancelar</button>
+                <button id="modalBtnConfirmar" class="btn-gold">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================
+         CONTENEDOR DE TOAST NOTIFICATIONS
+         ========================================================== -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- ==========================================================
+         JQUERY & JAVASCRIPT MODULAR CON HIDRATACIÓN
+         ========================================================== -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        if (typeof jQuery === 'undefined') {
+            console.log('[KARAOKE TULUM] Modo offline detectado: activando adaptador jQuery...');
+            window.$ = window.jQuery = function(selector) {
+                if (typeof selector === 'function') {
+                    if (document.readyState !== 'loading') selector(window.$);
+                    else document.addEventListener('DOMContentLoaded', () => selector(window.$));
+                    return;
+                }
+                const elements = typeof selector === 'string' ? Array.from(document.querySelectorAll(selector)) : 
+                                 (selector instanceof Element || selector === window || selector === document ? [selector] : (Array.isArray(selector) ? selector : []));
+                
+                const wrapper = {
+                    elements,
+                    length: elements.length,
+                    on(event, handlerOrChild, handler) {
+                        const isDelegated = typeof handlerOrChild === 'string';
+                        const fn = isDelegated ? handler : handlerOrChild;
+                        elements.forEach(el => {
+                            el.addEventListener(event, e => {
+                                if (isDelegated) {
+                                    const target = e.target.closest(handlerOrChild);
+                                    if (target && el.contains(target)) fn.call(target, e);
+                                } else fn.call(el, e);
+                            });
+                        });
+                        return wrapper;
+                    },
+                    off(event) { return wrapper; },
+                    addClass(cls) { elements.forEach(el => el.classList.add(...cls.split(' '))); return wrapper; },
+                    removeClass(cls) { elements.forEach(el => el.classList.remove(...cls.split(' '))); return wrapper; },
+                    toggleClass(cls, state) { elements.forEach(el => el.classList.toggle(cls, state)); return wrapper; },
+                    hasClass(cls) { return elements.some(el => el.classList.contains(cls)); },
+                    html(str) {
+                        if (str === undefined) return elements[0] ? elements[0].innerHTML : '';
+                        elements.forEach(el => el.innerHTML = str);
+                        return wrapper;
+                    },
+                    text(str) {
+                        if (str === undefined) return elements[0] ? elements[0].textContent : '';
+                        elements.forEach(el => el.textContent = str);
+                        return wrapper;
+                    },
+                    val(str) {
+                        if (str === undefined) return elements[0] ? elements[0].value : '';
+                        elements.forEach(el => el.value = str);
+                        return wrapper;
+                    },
+                    attr(key, val) {
+                        if (val === undefined) return elements[0] ? elements[0].getAttribute(key) : null;
+                        elements.forEach(el => el.setAttribute(key, val));
+                        return wrapper;
+                    },
+                    css(prop, val) {
+                        elements.forEach(el => {
+                            if (typeof prop === 'object') Object.assign(el.style, prop);
+                            else el.style[prop] = val;
+                        });
+                        return wrapper;
+                    },
+                    append(child) {
+                        elements.forEach(el => {
+                            if (typeof child === 'string') el.insertAdjacentHTML('beforeend', child);
+                            else if (child && child.elements) child.elements.forEach(c => el.appendChild(c));
+                            else if (child instanceof Element) el.appendChild(child);
+                        });
+                        return wrapper;
+                    },
+                    fadeIn(ms, cb) {
+                        elements.forEach(el => {
+                            el.style.opacity = '0';
+                            el.style.display = '';
+                            el.style.transition = `opacity ${ms || 250}ms`;
+                            requestAnimationFrame(() => el.style.opacity = '1');
+                        });
+                        if (cb) setTimeout(cb, ms || 250);
+                        return wrapper;
+                    },
+                    fadeOut(ms, cb) {
+                        elements.forEach(el => {
+                            el.style.transition = `opacity ${ms || 250}ms`;
+                            el.style.opacity = '0';
+                        });
+                        setTimeout(() => {
+                            elements.forEach(el => el.style.display = 'none');
+                            if (cb) cb();
+                        }, ms || 250);
+                        return wrapper;
+                    },
+                    hide() { elements.forEach(el => el.style.display = 'none'); return wrapper; },
+                    show() { elements.forEach(el => el.style.display = ''); return wrapper; },
+                    remove() { elements.forEach(el => el.remove()); return wrapper; },
+                    closest(sel) { return window.$(elements[0] ? elements[0].closest(sel) : null); },
+                    find(sel) {
+                        const found = [];
+                        elements.forEach(el => found.push(...el.querySelectorAll(sel)));
+                        return window.$(found);
+                    },
+                    is(sel) {
+                        if (!elements[0]) return false;
+                        if (typeof sel === 'string') return elements[0].matches(sel);
+                        return elements[0] === sel;
+                    }
+                };
+                return wrapper;
+            };
+        }
+    </script>
+
+    <!-- Módulos JavaScript ES6 en Orden de Dependencia e Hidratación -->
+    <script src="js/storage.js"></script>
+    <script src="js/logs.js"></script>
+    <script src="js/songs.js"></script>
+    <script src="js/categories.js"></script>
+    <script src="js/favorites.js"></script>
+    <script src="js/validation.js"></script>
+    <script src="js/reservations.js"></script>
+    <script src="js/lazy-loading.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/hydration.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/router.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+</html>

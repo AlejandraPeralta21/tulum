@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 100 100" fill="none">
+    <circle cx="50" cy="50" r="46" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="2 2" opacity="0.6"/>
+    <circle cx="50" cy="50" r="42" stroke="url(#goldGrad)" stroke-width="2"/>
+    <circle cx="50" cy="50" r="39" stroke="url(#goldGrad)" stroke-width="0.8" opacity="0.5"/>
+    <!-- Palmera Izquierda -->
+    <path d="M30 52 C28 42 22 36 18 38 C22 42 24 48 26 53" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M30 50 C26 44 20 45 19 49 C24 50 27 52 29 55" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M30 54 C30 65 29 70 28 74" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Palmera Derecha -->
+    <path d="M70 52 C72 42 78 36 82 38 C78 42 76 48 74 53" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M70 50 C74 44 80 45 81 49 C76 50 73 52 71 55" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M70 54 C70 65 71 70 72 74" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round"/>
+    <!-- Micrófono Central Shure Vintage -->
+    <rect x="42" y="27" width="16" height="26" rx="8" fill="url(#goldGrad)" stroke="#08080D" stroke-width="1"/>
+    <line x1="42" y1="34" x2="58" y2="34" stroke="#08080D" stroke-width="1.4"/>
+    <line x1="42" y1="40" x2="58" y2="40" stroke="#08080D" stroke-width="1.4"/>
+    <line x1="42" y1="46" x2="58" y2="46" stroke="#08080D" stroke-width="1.4"/>
+    <line x1="50" y1="27" x2="50" y2="53" stroke="#08080D" stroke-width="1.4"/>
+    <path d="M38 43 C38 57 62 57 62 43" stroke="url(#goldGrad)" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="50" y1="56" x2="50" y2="67" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M42 67 H58" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round"/>
+    <defs>
+        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F0D9A0" />
+            <stop offset="50%" stop-color="#D8B978" />
+            <stop offset="100%" stop-color="#9E7D3B" />
+        </linearGradient>
+    </defs>
+</svg>

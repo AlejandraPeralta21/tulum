@@ -1,0 +1,371 @@
+/**
+ * KARAOKE TULUM - Animaciones Profesionales y Microinteracciones
+ * Rediseño Futurista AI: Ondas holográficas, anillos de energía, transición cinematográfica,
+ * ecualizadores reactivos, pulso inteligente y microinteracciones de lujo.
+ */
+
+/* ==========================================================
+   1. ONDAS DE SONIDO DEL SPLASH Y VISUALIZADOR
+   ========================================================== */
+@keyframes musicWavePulse {
+    0%, 100% {
+        height: 14px;
+        opacity: 0.6;
+        filter: drop-shadow(0 0 4px var(--color-neon-pink));
+    }
+    50% {
+        height: 52px;
+        opacity: 1;
+        filter: drop-shadow(0 0 12px var(--color-gold-champagne));
+    }
+}
+
+.wave-bar {
+    width: 4px;
+    background: linear-gradient(180deg, var(--color-gold-champagne) 0%, var(--color-neon-pink) 60%, var(--color-neon-violet) 100%);
+    border-radius: 4px;
+    animation: musicWavePulse 1.2s infinite ease-in-out;
+}
+
+.wave-bar:nth-child(1) { animation-delay: 0.1s; }
+.wave-bar:nth-child(2) { animation-delay: 0.3s; }
+.wave-bar:nth-child(3) { animation-delay: 0.5s; }
+.wave-bar:nth-child(4) { animation-delay: 0.2s; }
+.wave-bar:nth-child(5) { animation-delay: 0.4s; }
+.wave-bar:nth-child(6) { animation-delay: 0.6s; }
+.wave-bar:nth-child(7) { animation-delay: 0.15s; }
+.wave-bar:nth-child(8) { animation-delay: 0.35s; }
+.wave-bar:nth-child(9) { animation-delay: 0.25s; }
+.wave-bar:nth-child(10) { animation-delay: 0.45s; }
+
+/* Visualizador en Reproductor de Karaoke */
+@keyframes visualizerEqualizer {
+    0%, 100% { height: 8px; }
+    30% { height: 32px; }
+    60% { height: 16px; }
+    80% { height: 38px; }
+}
+
+.karaoke-waves-bar {
+    display: inline-block;
+    width: 3.5px;
+    background: linear-gradient(180deg, var(--color-gold-champagne) 0%, var(--color-neon-violet) 100%);
+    border-radius: 3px;
+    animation: visualizerEqualizer 1s infinite ease-in-out;
+    transition: height 0.2s;
+}
+
+.karaoke-waves-bar.bar-1 { animation-delay: 0.1s; animation-duration: 0.8s; }
+.karaoke-waves-bar.bar-2 { animation-delay: 0.25s; animation-duration: 1.1s; }
+.karaoke-waves-bar.bar-3 { animation-delay: 0.4s; animation-duration: 0.9s; }
+.karaoke-waves-bar.bar-4 { animation-delay: 0.15s; animation-duration: 1.2s; }
+.karaoke-waves-bar.bar-5 { animation-delay: 0.3s; animation-duration: 0.7s; }
+.karaoke-waves-bar.paused {
+    animation-play-state: paused;
+    height: 6px !important;
+    opacity: 0.5;
+}
+
+/* ==========================================================
+   2. ANILLOS DE ENERGÍA Y MICRÓFONO HOLOGRÁFICO 3D
+   ========================================================== */
+@keyframes energyOrbit1 {
+    0% { transform: rotate(0deg) scaleX(1.25) scaleY(0.7); }
+    100% { transform: rotate(360deg) scaleX(1.25) scaleY(0.7); }
+}
+
+@keyframes energyOrbit2 {
+    0% { transform: rotate(60deg) scaleX(0.75) scaleY(1.3); }
+    100% { transform: rotate(420deg) scaleX(0.75) scaleY(1.3); }
+}
+
+@keyframes energyOrbit3 {
+    0% { transform: rotate(-35deg) scale(1.15); opacity: 0.4; }
+    50% { transform: rotate(145deg) scale(1.35); opacity: 0.8; }
+    100% { transform: rotate(325deg) scale(1.15); opacity: 0.4; }
+}
+
+.holo-energy-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.holo-energy-ring.ring-1 {
+    width: 90px;
+    height: 90px;
+    margin-top: -45px;
+    margin-left: -45px;
+    border: 1.5px solid rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    animation: energyOrbit1 7s linear infinite;
+}
+
+.holo-energy-ring.ring-2 {
+    width: 110px;
+    height: 110px;
+    margin-top: -55px;
+    margin-left: -55px;
+    border: 1.5px dashed rgba(216, 185, 120, 0.6);
+    box-shadow: 0 0 20px rgba(216, 185, 120, 0.35);
+    animation: energyOrbit2 9s linear infinite reverse;
+}
+
+.holo-energy-ring.ring-3 {
+    width: 125px;
+    height: 125px;
+    margin-top: -62.5px;
+    margin-left: -62.5px;
+    border: 1px solid rgba(56, 123, 255, 0.4);
+    box-shadow: 0 0 25px rgba(56, 123, 255, 0.3);
+    animation: energyOrbit3 11s ease-in-out infinite;
+}
+
+/* Anillos del Splash Screen */
+.energy-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.energy-orbit.orbit-1 {
+    width: 160px;
+    height: 160px;
+    margin-top: -80px;
+    margin-left: -80px;
+    border: 2px solid rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+    animation: energyOrbit1 8s linear infinite;
+}
+
+.energy-orbit.orbit-2 {
+    width: 190px;
+    height: 190px;
+    margin-top: -95px;
+    margin-left: -95px;
+    border: 2px dashed rgba(216, 185, 120, 0.6);
+    box-shadow: 0 0 35px rgba(216, 185, 120, 0.4);
+    animation: energyOrbit2 10s linear infinite reverse;
+}
+
+.energy-orbit.orbit-3 {
+    width: 220px;
+    height: 220px;
+    margin-top: -110px;
+    margin-left: -110px;
+    border: 1.5px solid rgba(56, 123, 255, 0.4);
+    box-shadow: 0 0 45px rgba(56, 123, 255, 0.35);
+    animation: energyOrbit3 12s ease-in-out infinite;
+}
+
+/* ==========================================================
+   3. VISUALIZADOR DE FRECUENCIAS ECUALIZADOR EN VIVO
+   ========================================================== */
+@keyframes freqEqualizerJump {
+    0%, 100% { height: var(--initial-h, 25%); }
+    50% { height: 95%; }
+}
+
+.freq-bar {
+    display: inline-block;
+    width: 3.5px;
+    height: var(--initial-h, 30%);
+    background: linear-gradient(180deg, var(--color-neon-pink) 0%, var(--color-neon-violet) 40%, var(--color-gold-champagne) 100%);
+    border-radius: 3px;
+    animation: freqEqualizerJump 0.85s infinite ease-in-out;
+}
+
+/* ==========================================================
+   4. INDICADORES DE INTELIGENCIA ARTIFICIAL & PULSOS
+   ========================================================== */
+@keyframes aiPulseDot {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--color-neon-violet);
+    }
+    50% {
+        opacity: 0.4;
+        transform: scale(0.8);
+        box-shadow: 0 0 3px var(--color-electric-blue);
+    }
+}
+
+.ai-pulse-dot, .status-live-dot, .status-pulse-led {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-neon-violet);
+    display: inline-block;
+    animation: aiPulseDot 1.4s infinite ease-in-out;
+}
+
+.status-live-dot {
+    background: var(--color-gold-champagne);
+    box-shadow: 0 0 8px var(--color-gold-champagne);
+}
+
+@keyframes aiSparkRingPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 0.3; }
+}
+
+.ai-spark-ring {
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border-radius: 9999px;
+    border: 1.5px solid var(--color-neon-violet);
+    pointer-events: none;
+    animation: aiSparkRingPulse 2s infinite ease-in-out;
+}
+
+/* ==========================================================
+   5. VINILO GIRATORIO
+   ========================================================== */
+@keyframes spinVinyl {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.player-vinyl-disc.spinning {
+    animation: spinVinyl 12s linear infinite;
+}
+
+/* ==========================================================
+   6. SKELETON SHIMMER PLACEHOLDER
+   ========================================================== */
+@keyframes skeletonShimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.img-placeholder-wrapper:not(.ready), .shimmer {
+    background: linear-gradient(90deg, #0D0D16 25%, #1F1C33 50%, #0D0D16 75%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.8s infinite;
+}
+
+/* ==========================================================
+   7. SPLASH SCREEN CINEMATOGRÁFICO ("ENTRAR A TULUM")
+   ========================================================== */
+@keyframes splashFadeIn {
+    from { opacity: 0; transform: scale(1.05); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes splashCinematicExit {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    35% {
+        opacity: 0.95;
+        transform: scale(1.06);
+        filter: brightness(1.3) drop-shadow(0 0 35px var(--color-neon-violet));
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1.18);
+        filter: blur(12px) brightness(2);
+        visibility: hidden;
+    }
+}
+
+.splash-screen {
+    animation: splashFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.splash-screen.splash-cinematic-exit {
+    animation: splashCinematicExit 0.75s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* ==========================================================
+   8. MODALES, TOASTS & DRAWER
+   ========================================================== */
+@keyframes modalPopIn {
+    from { opacity: 0; transform: scale(0.92) translateY(12px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-card {
+    animation: modalPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastSlideIn {
+    from { opacity: 0; transform: translateX(40px) scale(0.95); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+.toast-item {
+    animation: toastSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Letras de Karaoke con iluminación holográfica */
+.lyric-line {
+    transition: color 0.3s, transform 0.3s, font-size 0.3s;
+}
+
+.lyric-line.active {
+    color: var(--color-gold-champagne);
+    font-size: 1.15rem;
+    font-weight: 700;
+    transform: scale(1.04);
+    text-shadow: 0 0 14px rgba(216, 185, 120, 0.75), 0 0 25px rgba(168, 85, 247, 0.4);
+}
+
+.lyric-line.past {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+/* ==========================================================
+   ANIMACIONES ELEGANTES DEL FORMULARIO DE RESERVAS
+   ========================================================== */
+@keyframes reservaCardFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes goldRingPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.6);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes subtleGoldPulse {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(216, 185, 120, 0.25);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(216, 185, 120, 0.5);
+    }
+}
+
+/* Respeto estricto a accesibilidad: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

@@ -1,0 +1,547 @@
+/**
+ * KARAOKE TULUM - Adaptabilidad Responsiva Profesional (responsive.css)
+ * Mobile-First y Desktop Adapters garantizando CERO SCROLL en cualquier dispositivo.
+ */
+
+/* ==========================================================
+   PANTALLAS GRANDES Y ESCRITORIO (> 1024px)
+   ========================================================== */
+@media (min-width: 1025px) {
+    .app-bottom-nav {
+        display: none !important;
+    }
+    
+    .catalogo-songs-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .categorias-grid-layout {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
+
+/* ==========================================================
+   TABLETS Y PANTALLAS MEDIANAS (768px - 1024px)
+   ========================================================== */
+@media (max-width: 1024px) {
+    .inicio-sections-split {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .catalogo-songs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .categorias-grid-layout {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .admin-dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-card-panel.full-width {
+        grid-column: span 2;
+    }
+
+    .historial-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-right-illustration {
+        display: none;
+    }
+
+    .inicio-songs-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .inicio-artists-scroll {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .artistas-grid-layout {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ==========================================================
+   DISPOSITIVOS MÓVILES (< 768px) - ESTILO MOCKUP EXACTO
+   ========================================================== */
+@media (max-width: 767px) {
+    .app-container {
+        grid-template-rows: auto 1fr auto;
+    }
+
+    /* Activar Bottom Navigation Bar estilo app nativa */
+    .app-bottom-nav {
+        display: flex !important;
+    }
+
+    .app-header {
+        height: 54px;
+        padding: 0 14px;
+    }
+
+    .header-center-route {
+        display: none;
+    }
+
+    .btn-header-admin-pill span {
+        display: none;
+    }
+
+    .app-content-area {
+        padding: 10px 12px;
+    }
+
+    /* Inicio en Móvil */
+    .view-inicio-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        overflow-y: auto;
+    }
+
+    .inicio-hero-banner {
+        padding: 12px 14px;
+    }
+
+    .hero-title {
+        font-size: 1.35rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.82rem;
+        display: block;
+    }
+
+    .hero-desc-lounge {
+        font-size: 0.74rem;
+    }
+
+    .hero-actions-row .btn-gold,
+    .hero-actions-row .btn-gold-outline,
+    .hero-actions-row .btn-dark-pill {
+        padding: 7px 12px;
+        font-size: 0.74rem;
+    }
+
+    .inicio-songs-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .inicio-artists-scroll {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .inicio-categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .footer-social-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .footer-social-links {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .footer-metrics-pills {
+        flex-wrap: wrap;
+        font-size: 0.68rem;
+    }
+
+    /* Catálogo en Móvil */
+    .catalogo-songs-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 6px;
+    }
+
+    .song-card {
+        padding: 6px 10px;
+    }
+
+    .song-card-img-wrap {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Reservas en Móvil */
+    .view-reservas-container {
+        gap: 6px;
+    }
+
+    .reservation-stepper {
+        padding: 2px 0;
+        gap: 8px;
+    }
+
+    .step-item {
+        font-size: 0.74rem;
+        gap: 5px;
+    }
+
+    .step-circle {
+        width: 24px;
+        height: 24px;
+        font-size: 0.72rem;
+    }
+
+    .step-line {
+        width: 18px;
+    }
+
+    .step-body-container {
+        align-items: flex-start;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: none;
+    }
+    .step-body-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .reserva-unified-form,
+    .reserva-form-card {
+        padding: 0;
+        border-radius: 14px;
+        max-width: 100%;
+        gap: 8px;
+    }
+
+    .form-sections-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .form-sub-section-card {
+        padding: 10px 12px;
+        border-radius: 12px;
+    }
+
+    .sub-section-header {
+        margin-bottom: 6px;
+        padding-bottom: 5px;
+        gap: 8px;
+    }
+
+    .sub-section-badge-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .sub-section-badge-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .sub-section-title {
+        font-size: 0.98rem;
+    }
+
+    .sub-section-desc {
+        font-size: 0.66rem;
+    }
+
+    .sub-section-fields {
+        gap: 6px;
+    }
+
+    .form-fields-dual-row {
+        gap: 6px;
+    }
+
+    .form-card-header {
+        margin-bottom: 8px;
+    }
+
+    .form-section-title {
+        font-size: 1.15rem;
+    }
+
+    .form-section-badge {
+        font-size: 0.62rem;
+        padding: 2px 8px;
+    }
+
+    .form-fields-grid {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        margin-bottom: 8px;
+    }
+
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+
+    .form-group label {
+        font-size: 0.72rem;
+        margin-bottom: 2px;
+    }
+
+    .tulum-input, .tulum-select, .phone-input-bolivia {
+        height: 38px;
+        font-size: 0.84rem;
+    }
+
+    .input-with-icon .tulum-input, .input-with-icon .tulum-select {
+        padding-left: 34px;
+    }
+
+    .input-with-icon svg {
+        left: 10px;
+        width: 15px;
+        height: 15px;
+    }
+
+    .phone-prefix-wrap {
+        padding: 0 8px;
+        font-size: 0.78rem;
+    }
+
+    .phone-number-input {
+        font-size: 0.86rem !important;
+        padding: 0 8px !important;
+    }
+
+    .phone-char-counter {
+        font-size: 0.68rem;
+        padding: 1px 5px;
+    }
+
+    /* Botones Inferiores en Móvil */
+    .form-actions-split-bar {
+        display: flex;
+        gap: 8px;
+        margin-top: 6px;
+    }
+
+    .btn-reserva-back {
+        height: 40px;
+        padding: 0 14px;
+        font-size: 0.78rem;
+        flex: 1;
+    }
+
+    .btn-reserva-continue {
+        height: 40px;
+        padding: 0 16px;
+        font-size: 0.8rem;
+        flex: 1.3;
+    }
+
+    .btn-reserva-edit {
+        height: 40px;
+        padding: 0 10px;
+        font-size: 0.76rem;
+    }
+
+    .btn-reserva-confirm {
+        height: 40px;
+        padding: 0 12px;
+        font-size: 0.78rem;
+    }
+
+    .btn-form-submit {
+        height: 40px;
+        font-size: 0.88rem;
+    }
+
+    .reserva-social-footer {
+        margin-top: 8px;
+        padding-top: 8px;
+    }
+
+    .social-footer-text {
+        font-size: 0.7rem;
+        margin-bottom: 6px;
+    }
+
+    .social-icons-row {
+        gap: 6px;
+    }
+
+    .social-link-btn {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+        gap: 4px;
+    }
+
+    .btn-large {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .timer-circular-wrap {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 4px;
+    }
+
+    .timer-svg {
+        width: 90px;
+        height: 90px;
+    }
+
+    .timer-countdown-num {
+        font-size: 1.35rem;
+    }
+
+    .confirm-heading {
+        font-size: 1.15rem;
+    }
+
+    .confirm-desc {
+        display: none;
+    }
+
+    .voucher-preview-card {
+        padding: 10px 12px;
+        margin-bottom: 10px;
+    }
+
+    .voucher-grid {
+        grid-template-columns: 1fr;
+        gap: 4px;
+    }
+
+    .reserva-step2-countdown-box,
+    .reserva-success-card {
+        padding: 14px;
+        max-width: 100%;
+        border-radius: 14px;
+    }
+
+    .gold-ring {
+        width: 48px;
+        height: 48px;
+    }
+
+    .gold-ring svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .success-title {
+        font-size: 1.25rem;
+    }
+
+    .voucher-final-card {
+        padding: 10px 12px;
+        margin-bottom: 12px;
+    }
+
+    .voucher-item {
+        font-size: 0.78rem;
+    }
+
+    /* Categorías en Móvil */
+    .categorias-grid-layout {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .cat-subtitle {
+        display: none;
+    }
+
+    /* Admin en Móvil */
+    .admin-dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto 1fr;
+    }
+
+    .admin-card-panel.full-width {
+        grid-column: span 2;
+    }
+
+    .crud-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tulum-table th:nth-child(4),
+    .tulum-table td:nth-child(4),
+    .tulum-table th:nth-child(5),
+    .tulum-table td:nth-child(5) {
+        display: none; /* Ocultar columnas secundarias para visualización compacta */
+    }
+
+    /* Reproductor en Móvil */
+    .karaoke-player-container {
+        height: 100dvh;
+        border-radius: 0;
+        padding: 12px;
+        gap: 8px;
+    }
+
+    .player-vinyl-disc {
+        width: 105px;
+        height: 105px;
+    }
+
+    .player-song-title {
+        font-size: 1.1rem;
+    }
+
+    /* Tulum AI Assistant en Móvil */
+    .tulum-ai-drawer {
+        width: 100%;
+        right: -100%;
+    }
+
+    .vis-center-waves-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .visualizer-frequencies {
+        justify-content: center;
+        height: 24px;
+    }
+
+    .vis-ai-chips {
+        display: none;
+    }
+
+    .admin-telemetry-panel {
+        grid-column: span 2;
+    }
+
+    .splash-brand-title {
+        font-size: 2.1rem;
+    }
+
+    .splash-btn-entrar {
+        padding: 12px 28px;
+        font-size: 0.92rem;
+    }
+
+    /* Toast container en móvil */
+    .toast-container {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        bottom: auto;
+    }
+
+    .toast-item {
+        max-width: 100%;
+        min-width: 0;
+    }
+}
